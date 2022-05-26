@@ -36,6 +36,8 @@ $(window).resize(function() {
 function timeElapse(date){
 	var current = Date();
 	var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+	var months = Math.floor(seconds / (3600 * 24 * 30));
+	seconds = seconds % (3600 * 24 * 30);
 	var days = Math.floor(seconds / (3600 * 24));
 	seconds = seconds % (3600 * 24);
 	var hours = Math.floor(seconds / 3600);
@@ -51,6 +53,12 @@ function timeElapse(date){
 	if (seconds < 10) {
 		seconds = "0" + seconds;
 	}
-	var result = "<span class=\"digit\">" + days + "</span> ngày <span class=\"digit\">" + hours + "</span> giờ <span class=\"digit\">" + minutes + "</span> phút <span class=\"digit\">" + seconds + "</span> giây"; 
+	var result = `
+	<span class="digit">${months} tháng </span>
+	<span class="digit">${days} ngày </span>
+	<span class="digit">${hours} giờ </span>
+	<span class="digit">${minutes} phút </span>
+	<span class="digit">${seconds} giây </span>
+	`; 
 	$("#clock").html(result);
 }
